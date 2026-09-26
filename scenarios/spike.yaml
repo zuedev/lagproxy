@@ -1,0 +1,19 @@
+# A ten second spike followed by a five second disconnect.
+#   lagproxy --listen :7777 --target :7778 --udp --scenario scenarios/spike.yaml --loop
+- at: 0s
+  latency: 40ms
+  jitter: 5ms
+- at: 10s
+  latency: 400ms
+  jitter: 150ms
+  loss: 8%
+- at: 13s
+  latency: 40ms
+  jitter: 5ms
+  loss: 0%
+- at: 20s
+  loss: 100% # simulate a full disconnect
+- at: 25s
+  loss: 0%
+- at: 30s
+  end: true
